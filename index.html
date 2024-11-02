@@ -170,8 +170,37 @@
 
 	</div>
 </body>
+	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Thời gian hiển thị giữa các hình ảnh (ms)
+            var interval = 2000; // 2 giây
+
+            // Lấy tất cả hình ảnh
+            var images = $(".birthday-image");
+            var currentIndex = 0;
+
+            // Hàm để hiển thị hình ảnh
+            function showNextImage() {
+                if (currentIndex < images.length) {
+                    $(images[currentIndex]).fadeIn(1000, function() {
+                        // Ẩn hình ảnh sau 2 giây
+                        setTimeout(function() {
+                            $(images[currentIndex]).fadeOut(1000, function() {
+                                currentIndex++;
+                                showNextImage(); // Hiển thị hình ảnh tiếp theo
+                            });
+                        }, interval);
+                    });
+                }
+            }
+
+            // Bắt đầu hiển thị hình ảnh
+            showNextImage();
+        });
+    </script>
 <script src="effect.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
